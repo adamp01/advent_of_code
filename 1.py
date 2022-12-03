@@ -1,5 +1,29 @@
+from itertools import groupby
+
+# Wanted to find a nicer solution
+with open("input_1.txt", "r") as infile:
+    lines = infile.readlines()
+
+    # Part 1
+    cals = max([
+        sum([int(item.strip()) for item in group])
+        for key, group in groupby(lines, lambda x: x != "\n")
+        if key
+    ])
+
+    print(cals)
+
+    # Part 2
+    cals = [
+        sum([int(item.strip()) for item in group])
+        for key, group in groupby(lines, lambda x: x != "\n")
+        if key
+    ]
+    cals.sort(reverse=True)
+    print(sum(cals[:3]))
+
 # The quick way
-with open("input.txt", "r") as infile:
+with open("input_1.txt", "r") as infile:
     lines = infile.readlines()
 
     current = 0
@@ -53,7 +77,7 @@ if __name__ == "__main__":
     elf = party.add_elf(Elf())
 
     # Start adding items and Elves
-    with open("input.txt", "r") as infile:
+    with open("input_1.txt", "r") as infile:
         lines = infile.readlines()
         for line in lines:
             if line == "\n":
