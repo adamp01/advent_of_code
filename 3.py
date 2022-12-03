@@ -1,8 +1,8 @@
 def chrToInt(char):
     if char.isupper():
-        return ord(char) - 38
+        return ord(char) - ord('A') + 27
     else:
-        return ord(char) - 96
+        return ord(char) - ord('a') + 1
 
 def main():
     with open("input_3.txt", "r") as infile:
@@ -11,7 +11,7 @@ def main():
         total = 0
         # Part 1
         for line in lines:
-            items = int(len(line.strip())/2)
+            items = len(line.strip())//2
             first = line[:items]
             second = line[items:]
             total += chrToInt(set.intersection(*map(set, [first, second])).pop())
